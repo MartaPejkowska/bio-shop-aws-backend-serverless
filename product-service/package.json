@@ -1,0 +1,23 @@
+{
+  "name": "Bio_shop_backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "deploy": "serverless deploy"
+  },
+  "keywords": [],
+  "author": "MP",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "babel-loader": "^9.1.2",
+    "serverless-offline": "^12.0.4",
+    "serverless-webpack": "^5.11.0",
+    "webpack": "^5.75.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  }
+}
