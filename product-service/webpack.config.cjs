@@ -21,13 +21,47 @@ module.exports = {
     },
     // Run babel on all .js files and skip those in node_modules
     module: {
+        // noParse: [/aws\-sdk/],
+        // noParse: [
+        //     /aws/
+        //    ],
         rules: [
             {
                 test: /\.js$/,
                 loader: "babel-loader",
                 include: __dirname,
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                // parser: {
+                //     commonjs: false, // disable CommonJS
+                // }
             }
         ]
     }
 };
+
+// const slsw = require('serverless-webpack');
+
+// module.exports = {
+//     entry: slsw.lib.entries,
+//     target: 'node',
+//     mode: slsw.lib.webpack.isLocal ? "development" : "production",
+//     externals: {
+//         'aws-sdk': 'aws-sdk'
+//     },
+//     module: {
+//         // noParse: [/aws\-sdk/],
+//                 rules: [
+//                                 {
+//                                     test: /\.m?js$/,
+//                                     loader: "babel-loader",
+//                                     include: __dirname,
+//                                     exclude: /node_modules/,
+//                                     // parser: {
+//                                     //     commonjs: false, // disable CommonJS
+//                                     // },
+
+//                                 }
+//                             ]
+
+//             }
+//   };

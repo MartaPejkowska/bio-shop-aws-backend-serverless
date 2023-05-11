@@ -1,4 +1,4 @@
-service: product-service
+service: product-service2
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -10,10 +10,22 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
-
-# you can overwrite defaults here
   stage: dev
   region: eu-west-1
+  environment:
+    TableName: Products_bio_shop
+    StockTableName: Stocks_bio_shop
+    #PRODUCTS_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    #STOCKS_TABLE: "candidate-email-${opt:stage, self:provider.stage}"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        "*"
+        #- dynamodb:Query
+        #- dynamodb:Scan
+        #- dynamodb:GetItem
+        #- dynamodb:PutItem
+      Resource: "*"
 
 plugins:
   - serverless-webpack
@@ -23,6 +35,8 @@ custom:
     webpack:
         webpackConfig: ./webpack.config.cjs
         includeModules: true # enable auto-packing of external modules
+        forceExclude:
+          - aws-sdk
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
 #    role:
@@ -54,19 +68,33 @@ custom:
 #    - include-me-dir/**
 
 functions:
-  getProductsList:
-    handler: lambdas/getProductsList.getProductsList
+  getProductsFromDB:
+    handler: lambdas/getProductsFromDb.getProductsFromDb
     events:
       - http:
           path: products
           method: get
           cors: true
-  getProductsById:
-    handler: lambdas/getProductsById.getProductsById
+  getProductsFromDbById:
+    handler: lambdas/getProductsFromDbById.getProductsFromDbById
     events:
       - http:
           path: products/{id}
           method: get
+          cors: true
+  createProduct:
+    handler: lambdas/createProduct.createProduct
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true
+  insertProducts:
+    handler: lambdas/insertProducts.insertProducts
+    events:
+      - http:
+          path: productss
+          method: post
           cors: true
 
 #    The following are a few example events you can configure

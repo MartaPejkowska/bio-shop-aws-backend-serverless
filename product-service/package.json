@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "deploy": "serverless deploy",
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "MP",
@@ -20,9 +21,14 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.284.0",
+    "@aws-sdk/lib-dynamodb": "^3.284.0",
     "@babel/preset-env": "^7.20.2",
     "ajv": "^8.12.0",
+    "aws-sdk": "^2.1329.0",
     "babel-jest": "^29.4.3",
-    "source-map-support": "^0.5.21"
+    "json-loader": "^0.5.7",
+    "source-map-support": "^0.5.21",
+    "uuid": "^9.0.0"
   }
 }
