@@ -21,5 +21,16 @@ export const responses={
             body:JSON.stringify(data)
         }
     },
+    _500(data={}){
+        return{
+            headers:{
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Methods':'*',
+                'Access-Control-Allow-Origin':'*',
+            },
+            statusCode:400,
+            body:JSON.stringify(data)
+        }
+    },
 }
 

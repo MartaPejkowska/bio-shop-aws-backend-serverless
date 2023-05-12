@@ -5,6 +5,7 @@ import {responses} from './responses.js'
 const dynamo= DynamoDBDocument.from(new DynamoDB());
 
 export const getProductsFromDbById= async(event)=>{
+    console.log(event)
     let id=event?.pathParameters.id
     let product_id=id
     const productResult= await dynamo.get({
@@ -25,7 +26,7 @@ export const getProductsFromDbById= async(event)=>{
             return responses._400('There is no id')
         }
         else if(!product) {
-        return  responses._400('There is no such product')
+        return  responses._500('There is no such product')
         }
         return responses._200(Object.assign(product,product.count=stock.count))
 }

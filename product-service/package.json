@@ -27,6 +27,7 @@
     "ajv": "^8.12.0",
     "aws-sdk": "^2.1329.0",
     "babel-jest": "^29.4.3",
+    "joi": "^17.9.2",
     "json-loader": "^0.5.7",
     "source-map-support": "^0.5.21",
     "uuid": "^9.0.0"

@@ -6,16 +6,15 @@ const dynamo= DynamoDBDocument.from(new DynamoDB());
 
 
 export const getProductsFromDb= async(event)=>{
+    console.log(event)
     const productsScan= await dynamo.scan({
             TableName:process.env.TableName,
         })
     const stocksScan= await dynamo.scan({
             TableName:process.env.StockTableName
     })
-
     const products=productsScan.Items
     const stocks=stocksScan.Items
-
 
     products.map((product) => {stocks.map(stock=>{
     if(product.id===stock.product_id)
@@ -23,8 +22,11 @@ export const getProductsFromDb= async(event)=>{
     }
 })})
 
-    if(!products) {
-        return  responses._400(`There was an error fetching data from ${TableName}`)
+    if(products.length==0){
+        return  responses._500(`There are no data in DB`)
+    }
+    else if(!productsScan) {
+        return  responses._500(`There was an error fetching data from DB}`)
         }
     return responses._200(products)
 }

@@ -19,6 +19,7 @@ const schema=Joi.object({
 
 export const createProduct= async event=>{
 
+    console.log(event)
     const product= JSON.parse(event.body)
     let id=uuidv4();
     product.id=id
