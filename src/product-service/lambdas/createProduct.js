@@ -20,7 +20,8 @@ const schema=Joi.object({
 export const createProduct= async event=>{
 
     console.log(event)
-    const product= JSON.parse(event.body)
+    const product= event.body ? JSON.parse(event.body) : JSON.parse(event)
+    console.log(product)
     let id=uuidv4();
     product.id=id
 
@@ -31,19 +32,22 @@ export const createProduct= async event=>{
 
     const result = schema.validate(product)
     const isValid=result.error
-    const finalProduct=Object.assign(product, product.count=stock.count)
-    const succesMessage=['Product added to Product and Stock database  ', finalProduct]
 
-    if (isValid=== undefined || null) {
+     if (isValid=== undefined || null) {
      const newProduct = await dynamo.put({TableName:TableName, Item:product})
     .catch(err=> console.log(err))
     .then(dynamo.put({TableName:StockTable, Item: stock}))
     .catch(err=> console.log(err))
+
+    const finalProduct=Object.assign(product, product.count=stock.count)
+    const succesMessage=['Product added to Product and Stock database  ', finalProduct]
     // return responses._200(Object.assign(product, product.count=stock.count))
+    console.log(succesMessage)
     return responses._200(succesMessage)
     }
     else
     {const failMessage='Invalid data   '+ result.error.details.map(detail =>  detail.message)
+    console.log(failMessage)
     // return responses._400(result.error.details.map(detail =>  detail.message))
     return responses._400(failMessage)
 }

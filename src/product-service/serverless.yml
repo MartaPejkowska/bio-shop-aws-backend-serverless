@@ -96,6 +96,12 @@ functions:
           path: productss
           method: post
           cors: true
+  catalogBatchProcess:
+    handler: lambdas/catalogBatchProcess.catalogBatchProcess
+    events:
+      - sqs:
+          arn: arn:aws:sqs:eu-west-1:839677929172:catalogItemsQueue
+          batchSize: 5
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

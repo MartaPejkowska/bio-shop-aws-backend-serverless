@@ -1,0 +1,15 @@
+{
+  "name": "product-service2",
+  "version": "1.0.0",
+  "description": "Packaged externals for product-service2",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.284.0",
+    "@aws-sdk/lib-dynamodb": "^3.284.0",
+    "@aws-sdk/smithy-client": "",
+    "@aws-sdk/types": "",
+    "joi": "^17.9.2",
+    "uuid": "^9.0.0"
+  }
+}
