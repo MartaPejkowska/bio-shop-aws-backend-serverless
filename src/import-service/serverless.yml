@@ -16,6 +16,9 @@ provider:
     - Effect: "Allow"
       Action: "s3:*"
       Resource: "arn:aws:s3:::${self:custom.bucketName}/*"
+    - Effect: "Allow"
+      Action: "sqs:*"
+      Resource: ${param:SQSArn}
 
 custom:
   bucketName: import-service-rs
