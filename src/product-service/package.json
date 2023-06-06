@@ -22,11 +22,13 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.284.0",
+    "@aws-sdk/client-sns": "^3.345.0",
     "@aws-sdk/lib-dynamodb": "^3.284.0",
     "@babel/preset-env": "^7.20.2",
     "ajv": "^8.12.0",
     "aws-sdk": "^2.1329.0",
     "babel-jest": "^29.4.3",
+    "dotenv": "^16.1.4",
     "joi": "^17.9.2",
     "json-loader": "^0.5.7",
     "source-map-support": "^0.5.21",
